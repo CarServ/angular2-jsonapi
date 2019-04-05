@@ -1,3 +1,8 @@
+# [7.0.0]
+
+  * Angular 7 support
+  * Smaller bug fixes
+
 # [6.1.3]
 
   * Fixed rollbackAttributes to public

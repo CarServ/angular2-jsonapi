@@ -6,6 +6,7 @@ import { ModelConfig } from '../interfaces/model-config.interface';
 import * as _ from 'lodash';
 import { AttributeMetadata } from '../constants/symbols';
 import { HttpHeaders } from '@angular/common/http';
+import { JsonApiMetaModel } from '..';
 
 /**
  * HACK/FIXME:
@@ -24,13 +25,21 @@ export class JsonApiModel {
 
   lastSyncModels: Array<any>;
 
-  constructor(private internalDatastore: JsonApiDatastore, data?: any) {
+  constructor(private internalDatastore: JsonApiDatastore, protected data?: any) {
     if (data) {
       this.modelInitialization = true;
       this.id = data.id;
       Object.assign(this, data.attributes);
       this.modelInitialization = false;
     }
+  }
+
+  get meta(): JsonApiMetaModel {
+    return new JsonApiMetaModel(this.data);
+  }
+
+  get relationships(): any {
+    return this.data.relationships;
   }
 
   public isModelInitialization(): boolean {
@@ -122,31 +131,26 @@ export class JsonApiModel {
 
         if (relationship && relationship.data && relationship.data.length > 0) {
           let allModels: JsonApiModel[] = [];
-          const modelTypesFetched: any = [];
 
           for (const typeIndex of Object.keys(relationship.data)) {
             const typeName: string = relationship.data[typeIndex].type;
 
-            if (!includes(modelTypesFetched, typeName)) {
-              modelTypesFetched.push(typeName);
-              // tslint:disable-next-line:max-line-length
-              const modelType: ModelType<this> = Reflect.getMetadata('JsonApiDatastoreConfig', this.internalDatastore.constructor).models[typeName];
+            // tslint:disable-next-line:max-line-length
+            const modelType: ModelType<this> = Reflect.getMetadata('JsonApiDatastoreConfig', this.internalDatastore.constructor).models[typeName];
 
-              if (modelType) {
-                const relationshipModels: JsonApiModel[] = this.getHasManyRelationship(
-                  modelType,
-                  relationship.data,
-                  included,
-                  typeName,
-                  remainingModels
-                );
+            if (modelType) {
+              const relationshipModels: JsonApiModel[] = this.getHasManyRelationship(
+                modelType,
+                [relationship.data[typeIndex]],
+                included,
+                typeName,
+                remainingModels);
 
-                if (relationshipModels.length > 0) {
-                  allModels = allModels.concat(relationshipModels);
-                }
-              } else {
-                throw { message: `parseHasMany - Model type for relationship ${typeName} not found.` };
+              if (relationshipModels.length > 0) {
+                allModels = allModels.concat(relationshipModels);
               }
+            } else {
+              throw { message: `parseHasMany - Model type for relationship ${typeName} not found.` };
             }
 
             if (allModels.length > 0) {

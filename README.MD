@@ -1,35 +1,47 @@
-# Angular 2 JSON API
+# Angular JSON API
 
-A lightweight Angular 2 adapter for [JSON API](http://jsonapi.org/)
+A lightweight Angular adapter for [JSON API](http://jsonapi.org/)
 
-[![Build Status](https://travis-ci.org/ghidoz/angular2-jsonapi.svg?branch=master)](https://travis-ci.org/ghidoz/angular2-jsonapi)
-[![Coverage Status](https://coveralls.io/repos/github/ghidoz/angular2-jsonapi/badge.svg?branch=master)](https://coveralls.io/github/ghidoz/angular2-jsonapi?branch=master)
+<!-- [![Build Status](https://travis-ci.org/ghidoz/angular2-jsonapi.svg?branch=master)](https://travis-ci.org/ghidoz/angular2-jsonapi)
+[![Coverage Status](https://coveralls.io/repos/github/ghidoz/angular2-jsonapi/badge.svg?branch=master)](https://coveralls.io/github/ghidoz/angular2-jsonapi?branch=master) -->
 [![Angular 2 Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://angular.io/styleguide)
-[![Dependency Status](https://david-dm.org/ghidoz/angular2-jsonapi.svg)](https://david-dm.org/ghidoz/angular2-jsonapi)
+<!-- [![Dependency Status](https://david-dm.org/ghidoz/angular2-jsonapi.svg)](https://david-dm.org/ghidoz/angular2-jsonapi)
 [![devDependency Status](https://david-dm.org/ghidoz/angular2-jsonapi/dev-status.svg)](https://david-dm.org/ghidoz/angular2-jsonapi#info=devDependencies)
-[![npm version](https://badge.fury.io/js/angular2-jsonapi.svg)](https://badge.fury.io/js/angular2-jsonapi)
+[![npm version](https://badge.fury.io/js/angular2-jsonapi.svg)](https://badge.fury.io/js/angular2-jsonapi) -->
 
 ## Table of Contents
-- [Introduction](#Introduction)
-- [Installation](#installation)
-- [Usage](#usage)
+- [Angular JSON API](#angular-json-api)
+  - [Table of Contents](#table-of-contents)
+  - [Introduction](#introduction)
+  - [Installation](#installation)
+  - [Usage](#usage)
     - [Configuration](#configuration)
     - [Finding Records](#finding-records)
-        - [Querying for Multiple Records](#querying-for-multiple-records)
-        - [Retrieving a Single Record](#retrieving-a-single-record)
+      - [Querying for Multiple Records](#querying-for-multiple-records)
+      - [Retrieving a Single Record](#retrieving-a-single-record)
     - [Creating, Updating and Deleting](#creating-updating-and-deleting)
-        - [Creating Records](#creating-records)
-        - [Updating Records](#updating-records)
-        - [Persisting Records](#persisting-records)
-        - [Deleting Records](#deleting-records)
+      - [Creating Records](#creating-records)
+      - [Updating Records](#updating-records)
+      - [Persisting Records](#persisting-records)
+      - [Deleting Records](#deleting-records)
     - [Relationships](#relationships)
+      - [Querying records](#querying-records)
+      - [Creating Records](#creating-records-1)
+      - [Updating Records](#updating-records-1)
     - [Metadata](#metadata)
+    - [Datastore config](#datastore-config)
+        - [Overrides](#overrides)
+    - [Model config](#model-config)
+    - [Decorators](#decorators)
+      - [Model decorators](#model-decorators)
     - [Custom Headers](#custom-headers)
+    - [Custom request options](#custom-request-options)
     - [Error handling](#error-handling)
     - [Dates](#dates)
-- [Development](#development)
-- [Additional tools](#additional-tools)
-- [License](#licence)
+  - [Development](#development)
+  - [Additional tools](#additional-tools)
+  - [Thanks](#thanks)
+  - [License](#license)
 
 ## Introduction
 Why this library? Because [JSON API](http://jsonapi.org/) is an awesome standard, but the responses that you get and the way to interact with endpoints are not really easy and directly consumable from Angular.
@@ -62,7 +74,11 @@ Moreover, using Angular2 and Typescript, we like to interact with classes and mo
 
 To install this library, run:
 ```bash
-$ npm install angular2-jsonapi --save
+$ npm install @jatorresdev/angular2-jsonapi --save
+```
+
+```bash
+$ yarn add @jatorresdev/angular2-jsonapi
 ```
 
 Add the `JsonApiModule` to your app module imports:
