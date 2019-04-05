@@ -3,12 +3,12 @@
   "version": "7.0.0",
   "description": "A lightweight Angular 2+ adapter for JSON API",
   "scripts": {
-    "build": "rimraf dist src/compiled && tslint src/**/*.ts && ngc",
+    "build": "rimraf dist src/compiled && tslint src/**/*.ts &&  ./node_modules/.bin/ngc",
     "lint": "tslint src/**/*.ts",
     "pretest": "npm run build",
     "test": "karma start",
     "prepublish": "npm run build",
-    "ngc": "ngc",
+    "ngc": " ./node_modules/.bin/ngc ",
     "servetest": "npm run pretest & karma start karma.dev.conf.js"
   },
   "repository": {
