@@ -5,8 +5,8 @@
     "strictNullChecks": true,
     // Angular is currently not compatible with recent TS version + strictNullCheck: https://github.com/angular/angular/issues/17863
     "skipLibCheck": true,
-    "module": "commonjs",
-    "target": "ES5",
+    "module": "esnext",
+    "target": "es2015",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "sourceMap": true,
